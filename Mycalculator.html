@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+
+		.calcs{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+
+		}
+		.box{
+			/*border: 1px solid rgba(0, 0, 0, 0.7);
+			border-radius: 5px;
+			display: inline-block;
+			margin-top: 80px;
+			margin-left: 35%;*/
+			margin-top: 80px;
+			background-color: rgba(0, 0, 0, 0.7);
+			box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.);
+			animation-duration: 5s;
+			 animation-name: example;
+			 transition: all 0.5s ;
+			 animation-iteration-count: infinite;
+
+
+		}
+		@-webkit-keyframes example {
+    0%, 100% {background: linear-gradient(to bottom, grey 30%, rgba(0, 0, 0, 0.7) 70%);}
+        40% {background: linear-gradient(to bottom, grey 30%, rgba(0, 0, 0, 0.7) 70%);}
+    
+  
+}
+@keyframes example {
+    0%, 100% {background: linear-gradient(to bottom, grey 30%, rgba(0, 0, 0, 0.7) 70%);}
+        40% {background: linear-gradient(to bottom, grey 30%, rgba(0, 0, 0, 0.7) 70%);}
+    
+  
+}
+		.screen{
+			margin-top: 20px;
+			margin: 10px;
+			
+			border: none;
+			
+			border-radius: 5px;
+			box-sizing: 30px;
+			font-size: 1.5rem;
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+		.number{
+			display: inline-block;
+			padding:  5px 10px 5px 10px;
+			margin: 10px;
+			
+			
+		}
+		button {
+    background: #444444;
+    display: block;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 1.5rem;
+    color: #FFF;   
+}
+
+input{
+	height:70px;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.1);
+	border: none;
+	color: #FFF;
+	
+}
+
+button:hover {
+    background: #113F67;
+    transition: all .3s ease-in-out;
+    -webkit-transition: background .3s ease-in-out;
+    color: rgba(255, 255, 255, 0.5);
+  
+}
+	</style>
+</head>
+<body>
+
+
+
+
+
+
+<div class="calcs">
+<div class="box" id="calculator">
+<div class="screen" id="c"> <input id="screen" /> </div>
+<div class="number"><button onclick="addNum(1)">1</button></div>
+<div class="number"><button onclick="addNum(2)">2</button></div>
+<div class="number"><button  onclick="addNum(3)">3</button></div>
+<div class="number"><button  onclick="addOp('+')">+</button></div><br>
+<div class="number"><button  onclick="addNum(4)">4</button></div>
+<div class="number"><button  onclick="addNum(5)">5</button></div>
+<div class="number"><button  onclick="addNum(6)">6</button></div>
+<div class="number"><button  onclick="addOp('-')">-</button></div><br>
+<div class="number"><button   onclick="addNum(7)">7</button></div>
+<div class="number"><button  onclick="addNum(8)">8</button></div>
+<div class="number"><button  onclick="addNum(9)">9</button></div>
+<div class="number"><button  onclick="addOp('/')">/</button></div><br>
+<div class="number"><button  onclick="fa()">cl</button></div>
+<div class="number"><button  onclick="addOp('*')">*</button></div>
+<div class="number"><button onclick="addNum(0)">0</button></div>
+<div class="number"><button onclick="equals()">=</button></div> <br>
+<div class="number"><button  onclick="bk()"><</button></div>
+<div class="num" ><button id="power" onclick="power()" style="background-color: green;"><p id="me">on</p></button></div>
+
+
+<br>
+</div> 
+<script>
+	
+
+
+var fstval='';
+var sndval='';
+var arith='';
+var numfstval = parseInt(fstval);
+var btn = false;
+
+var a=true;
+document.getElementById('screen').disabled = true; 
+function fa(){
+	document.getElementById('screen').value = "";
+}
+
+function addNum(fati){
+	if (btn== false) {
+		return;
+	}
+	document.getElementById('screen').value += fati;
+}
+
+function bk(){
+	var cut = document.getElementById('screen').value;
+	var i = cut.length;
+	var p = i - 1;
+	var cuted = cut.slice(0, p);
+    document.getElementById('screen').value = cuted;
+	
+
+
+
+}
+
+function addOp(ope){
+
+	arith=ope;
+	fstval=document.getElementById('screen').value;
+	document.getElementById('screen').value='';
+}
+
+
+function equals(){
+	if (arith=='+') {
+		sndval =  document.getElementById('screen').value;
+		var numfstval = parseInt(fstval);
+        var numsndval = parseInt(sndval);
+        var add = numfstval + numsndval;
+	document.getElementById('screen').value = add; 
+	}
+	else if (arith=='-') {
+		sndval =  document.getElementById('screen').value;
+		var numfstval = parseInt(fstval);
+        var numsndval = parseInt(sndval);
+        var sub = numfstval - numsndval;
+		document.getElementById('screen').value = sub; 
+	} else if (arith=='*'){
+		sndval =  document.getElementById('screen').value;
+		var numfstval = parseInt(fstval);
+        var numsndval = parseInt(sndval);
+        var mul = numfstval * numsndval;
+		document.getElementById('screen').value = mul; 
+	} else if (arith=='/'){
+		sndval =  document.getElementById('screen').value;
+		var numfstval = parseInt(fstval);
+        var numsndval = parseInt(sndval);
+        var div = numfstval / numsndval;
+		document.getElementById('screen').value = div; 
+	}
+} 
+
+
+
+function power(c){
+	
+	 var n = document.getElementById('me').innerHTML ;
+	if (n=='on') {
+		document.getElementById('me').innerHTML = "off"
+		document.getElementById('power').style.backgroundColor = "red"
+		btn=true;
+		
+	}else{
+		document.getElementById('me').innerHTML = "on"
+	   document.getElementById('power').style.backgroundColor = "green"
+	   btn=false;
+	}
+	
+}
+var str = "Apple, Banana, Kiwi";
+var res = str.substring(7,13);
+
+
+
+
+</script>
+</body>
+</html>
