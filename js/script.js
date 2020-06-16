@@ -1,5 +1,4 @@
 var list = [];
-document.getElementById('oneTask').innerHTML
 function clear() {
   document.getElementById('form').reset();
   
