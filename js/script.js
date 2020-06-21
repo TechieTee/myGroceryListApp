@@ -1,30 +1,44 @@
-var list = [];
-function clear() {
-  document.getElementById('form').reset();
-  
-}
-function del() {
 
-  document.getElementById('List').innerHTML = "";
-  document.getElementById('delete').style.display = "none";
 
- 
-// var del = document.getElementById('delete');
-//  var i;
-//  for (var i = 0; i < list.length; i++) {
-//   document.getElementById('list').style.display = "none";
-//  }
-  
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
 }
 
-function add(){
- var newtask = document.getElementById('newTask').value;
- 
- list.push(newtask);
-  document.getElementById('List').innerHTML =  "<li>" + list + "</li>";
-  document.getElementById('delete').style.display = "block";
-  clear();
+var list = document.querySelector("#list")
+var additem = document.querySelector(".addItem");
+additem.addEventListener('click', (e) => {
+  e.preventDefault();
+  var li = document.createElement('li');
+  var newitem = document.querySelector("#newItem");
+   li.innerHTML = newitem.value;
+   list.appendChild(li);
+   newitem.value="";
+
+   var span = document.createElement("span");
+   var x = document.createElement("IMG");
+   x.setAttribute("src", "images/delete2.png");
+   x.setAttribute("width", "20");
+   x.setAttribute("height", "20");
+   x.setAttribute("alt", "delete-item");
+   //var txt= document.createTextNode("m");
+   span.className = "close"; 
+   span.appendChild(x);
+   li.appendChild(span);
+     for (let i = 0; i < close.length; i++) {
+      
+       close[i].onclick = function() {
+         var div = this.parentElement;
+         div.style.display = "none";
+         
+       }
+      
+       
+     }
+     
 }
-
-
-
+)
